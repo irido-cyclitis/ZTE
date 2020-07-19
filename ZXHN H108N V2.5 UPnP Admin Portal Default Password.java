@@ -78,7 +78,7 @@ public class main {
 						System.out.println("The router is vulnerable.\nThe username is admin and password is "+default_password);
 					}
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("The router isn't vulnerable");
 		}
 	}
 
