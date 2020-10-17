@@ -11,4 +11,4 @@ This repository complies with ZTE's Terms of disclosure. if you're vulnerable, p
 Morad "who cooperates with ZTE" contacted the company about these vulnerabilities, they're not 0-days !<br>
 
 ### **CVEs**
-CVE-2019-3420
+CVE-2019-3420<br>CVE-2020-3420
