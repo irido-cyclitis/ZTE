@@ -3,7 +3,7 @@ ZTE tips and tricks and some PoC codes !
 
 ### **Who made it?**
 * Morad Abdelrasheed Mokhtar Ali Gill (qarqoush)
-* Zeyad Azima (Cyber-Atom)
+* Zeyad Azima (Zer0verflow)
 
 ### **What is this?**
 This repository is made for MOST of ZTE well-known routers vulnerabilities that has been fixed.<br>
